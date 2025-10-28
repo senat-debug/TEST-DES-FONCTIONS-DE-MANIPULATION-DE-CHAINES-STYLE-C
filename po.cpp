@@ -1,11 +1,7 @@
 #include <iostream>
 
-// Note : size_t est généralement disponible par l'inclusion de base en C++ moderne, 
-// sinon il faudrait inclure <stddef.h>.
-
-// -------------------------------------------------------------
 // Prototypes des fonctions
-// -------------------------------------------------------------
+
 size_t LongueurChaine(const char* chaine);
 void CopierChaine(char* destination, const char* source);
 void ConcatenerChaines(char* destination, const char* source);
@@ -21,9 +17,7 @@ int ComparerChaines(const char* chaine1, const char* chaine2);
 void ConvertirMinuscules(char* chaine);
 bool EstChaineNumerique(const char* chaine);
 
-// -------------------------------------------------------------
 // Implémentations des fonctions
-// -------------------------------------------------------------
 
 // Tâche 1: Calcul de la longueur
 size_t LongueurChaine(const char* chaine) {
@@ -76,27 +70,7 @@ size_t CompterOccurrences(const char* chaine, char caractere) {
     }
     return compteur;
 }
-
-// Tâche 6: Copie de blocs mémoire
-void CopierMemoire(void* destination, const void* source, size_t taille) {
-    unsigned char* dest = (unsigned char*)destination;
-    const unsigned char* src = (const unsigned char*)source;
-
-    for (size_t i = 0; i < taille; i++) {
-        dest[i] = src[i];
-    }
-}
-
-// Tâche 7: Initialisation de blocs mémoire
-void InitialiserMemoire(void* zone, unsigned char valeur, size_t taille) {
-    unsigned char* ptr = (unsigned char*)zone;
-
-    for (size_t i = 0; i < taille; i++) {
-        ptr[i] = valeur;
-    }
-}
-
-// Tâche 8: Extraction de sous-chaîne
+// Tâche 6: Extraction de sous-chaîne
 void ExtraireSousChaine(char* destination, const char* source,
                          size_t debut, size_t longueur) {
     size_t len_source = LongueurChaine(source);
@@ -116,7 +90,7 @@ void ExtraireSousChaine(char* destination, const char* source,
     destination[i] = '\0';
 }
 
-// Tâche 9: Division de chaîne
+// Tâche 7: Division de chaîne
 size_t DiviserChaine(const char* chaine, char separateur,
                       char resultat[][100], size_t max_resultats) {
     size_t compteur_resultats = 0;
@@ -156,7 +130,29 @@ size_t DiviserChaine(const char* chaine, char separateur,
     return compteur_resultats;
 }
 
-// Tâche 10: Comparaison lexicographique
+
+
+// Tâche 8: fonction memoire
+void CopierMemoire(void* destination, const void* source, size_t taille) {
+    unsigned char* dest = (unsigned char*)destination;
+    const unsigned char* src = (const unsigned char*)source;
+
+    for (size_t i = 0; i < taille; i++) {
+        dest[i] = src[i];
+    }
+}
+
+// Tâche 9: Initialisation de blocs mémoire
+void InitialiserMemoire(void* zone, unsigned char valeur, size_t taille) {
+    unsigned char* ptr = (unsigned char*)zone;
+
+    for (size_t i = 0; i < taille; i++) {
+        ptr[i] = valeur;
+    }
+}
+
+
+// Tâche 10: Comparaison des chaines
 int ComparerChaines(const char* chaine1, const char* chaine2) {
     while (*chaine1 != '\0' && *chaine2 != '\0') {
         if (*chaine1 != *chaine2) {
@@ -201,10 +197,7 @@ bool EstChaineNumerique(const char* chaine) {
     return true;
 }
 
-
-// -------------------------------------------------------------
 // Programme Principal de Test (main)
-// -------------------------------------------------------------
 
 int main() {
     std::cout << "=== TEST DES FONCTIONS DE MANIPULATION DE CHAINES STYLE C ===" << std::endl;
@@ -241,6 +234,7 @@ int main() {
     ExtraireSousChaine(sous_chaine, message, 3, 5);
     std::cout << "6. Sous-chaîne (pos 3, longueur 5): '" << sous_chaine << "'" << std::endl;
     
+    
     // Test 7: Division de chaîne
     char phrase[] = "pomme,orange,banane,kiwi";
     char fruits[10][100];
@@ -250,8 +244,8 @@ int main() {
     for (size_t i = 0; i < nb_fruits; i++) {
         std::cout << "   [" << i << "] " << fruits[i] << std::endl;
     }
-    
-    // Test 8: Fonctions mémoire (CopierMemoire)
+
+     // Test 8: Fonctions mémoire (CopierMemoire)
     char zone1[10] = "ABCDEFGHI";
     char zone2[10];
     CopierMemoire(zone2, zone1, 5);
@@ -263,7 +257,6 @@ int main() {
     InitialiserMemoire(zone3, 'X', 5);
     zone3[5] = '\0';
     std::cout << "9. Initialisation mémoire: '" << zone3 << "'" << std::endl;
-    
     // Test 10: Comparaison de chaînes
     char chaineA[] = "apple";
     char chaineB[] = "banana";
